@@ -1,2 +1,2 @@
-Hello: HelloWorld.c
-	gcc -Werror -Wall -o Hello HelloWorld.c
+main: main.c
+	gcc -Werror -Wall -o main main.c
