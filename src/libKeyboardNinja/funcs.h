@@ -1,20 +1,9 @@
+#pragma once
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
-
-#ifdef _WIN32
-#include <windows.h>
-#define BG_RED 64
-#define BG_GREEN 32
-#define FG_GRAY 2
-#else
-#include <unistd.h>
-#define BG_RED 41
-#define FG_GRAY 30
-#define BG_GREEN 42
-#endif
 
 void trim(char* str);
 void set_text_color(int color);

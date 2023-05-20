@@ -126,4 +126,3 @@ void print_results(int errors, int total_chars, double elapsed_time)
     printf("Accuracy percentage: %.2f%%\n", 100.0 - error_percentage);
     printf("Elapsed time: %.2f seconds\n\n", elapsed_time);
 }
-
