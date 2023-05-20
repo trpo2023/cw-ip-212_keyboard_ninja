@@ -19,8 +19,26 @@
 #define FG_DEF 0
 #endif
 
+// Функция для удаления лишних символов 
+void trim(char *str)
+{
+    // Удаление с правого края
+    int len = strlen(str);
+    while (len > 0 && isspace(str[len-1])) {
+        str[len-1] = '\0';
+        len--;
+    }
+    
+    // Удаление с левого края
+    char *start = str;
+    while (*start && isspace(*start)) {
+        start++;
+    }
+    memmove(str, start, strlen(start) + 1);
+}
+
 // Меняем цвет текста
-void set_text_color(int color) 
+void set_text_color(int color)
 {
 #ifdef _WIN32
     // для ОС Windows используется библиотека Windows.h,
@@ -61,12 +79,7 @@ void read_user_input(char* buffer, size_t buffer_size)
 {
     printf("\n");
     fgets(buffer, buffer_size, stdin);
-
-    // Убираем символ \n в конце
-    size_t len = strlen(buffer);
-    if (len > 0 && buffer[len - 1] == '\n') {
-        buffer[len - 1] = '\0';
-    }
+    trim(buffer);
 }
 
 // Выводим сравнение двух строк, а также считаем и возвращаем кол-во ошибок
@@ -107,6 +120,6 @@ void print_results(int errors, int total_chars, double elapsed_time)
 {
     double error_percentage = (double)errors / total_chars * 100;
     printf("\n\nErrors: %d\n", errors);
-    printf("Error percentage: %.2f%%\n", error_percentage);
+    printf("Accuracy: %.2f%%\n", 100-error_percentage);
     printf("Elapsed time: %.2f seconds\n\n", elapsed_time);
 }
