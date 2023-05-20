@@ -16,25 +16,8 @@
 #define BG_RED 41
 #define FG_GRAY 30
 #define BG_GREEN 42
+#define FG_DEF 0
 #endif
-
-// Функция для удаления лишних символов 
-void trim(char *str)
-{
-    // Удаление с правого края
-    int len = strlen(str);
-    while (len > 0 && isspace(str[len-1])) {
-        str[len-1] = '\0';
-        len--;
-    }
-    
-    // Удаление с левого края
-    char *start = str;
-    while (*start && isspace(*start)) {
-        start++;
-    }
-    memmove(str, start, strlen(start) + 1);
-}
 
 // Меняем цвет текста
 void set_text_color(int color) 
