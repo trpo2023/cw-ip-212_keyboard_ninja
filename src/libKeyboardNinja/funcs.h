@@ -16,6 +16,7 @@
 #define BG_GREEN 42
 #endif
 
+void trim(char *str);
 void set_text_color(int color);
 void print_text(const char* text);
 void read_file(const char* filename, char* buffer, size_t buffer_size);

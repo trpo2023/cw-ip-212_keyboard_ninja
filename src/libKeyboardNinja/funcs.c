@@ -7,9 +7,10 @@
 
 #ifdef _WIN32
 #include <windows.h>
-#define BG_RED 64
-#define BG_GREEN 32
-#define FG_GRAY 2
+#define BG_RED 0xC0
+#define BG_GREEN 0xA0
+#define FG_GRAY 0x08
+#define FG_DEF 0x07
 #else
 #include <unistd.h>
 #define BG_RED 41
@@ -17,16 +18,32 @@
 #define BG_GREEN 42
 #endif
 
+// Функция для удаления лишних символов 
+void trim(char *str)
+{
+    // Удаление с правого края
+    int len = strlen(str);
+    while (len > 0 && isspace(str[len-1])) {
+        str[len-1] = '\0';
+        len--;
+    }
+    
+    // Удаление с левого края
+    char *start = str;
+    while (*start && isspace(*start)) {
+        start++;
+    }
+    memmove(str, start, strlen(start) + 1);
+}
+
 // Меняем цвет текста
-void set_text_color(int color)
+void set_text_color(int color) 
 {
 #ifdef _WIN32
     // для ОС Windows используется библиотека Windows.h,
     // получаем дескриптор стандартного вывода и устанавливаем цвет текста
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(
-            hConsole,
-            color | (BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE));
+    SetConsoleTextAttribute(hConsole, color);
 #else
     // для *nix систем используется escape-последовательность ANSI,
     // которая устанавливает цвет текста
@@ -39,9 +56,9 @@ void print_text(const char* text)
 {
     printf("\nType the following text: %s\n", text);
 
-    set_text_color(37);
+    set_text_color(FG_GRAY);
     printf("%s", text);
-    set_text_color(0);
+    set_text_color(FG_DEF);
 }
 
 // Функция для считывания текста из файла
@@ -83,7 +100,7 @@ int print_comparison(const char* original_text, const char* user_input)
             set_text_color(FG_GRAY);
             errors++;
             putchar(original_text[i]);
-            set_text_color(0);
+            set_text_color(FG_DEF);
             continue;
         }
 
@@ -96,7 +113,7 @@ int print_comparison(const char* original_text, const char* user_input)
         }
 
         putchar(user_input[i]);
-        set_text_color(0);
+        set_text_color(FG_DEF);
     }
 
     return errors;
