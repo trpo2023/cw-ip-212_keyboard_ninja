@@ -23,7 +23,7 @@ int main()
     setlocale(LC_ALL, "");
 
     printf("\t\t —— TYPING TRAINER —— \n\n");
-
+    printf("Choose dificulty:\n1 - easy\n2 - medium\n3 - hard\n");
     char filename[100] = "test.txt";
     int choice = 0;
     scanf("%d", &choice);
