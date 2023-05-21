@@ -25,8 +25,12 @@ int main()
     printf("\t\t —— TYPING TRAINER —— \n\n");
 
     char filename[100] = "test.txt";
+    int choice = 0;
+    scanf("%d", &choice);
+    getchar();
+    genName(filename, choice);
     char text[1000];
-    char user_input[1000];
+    char user_input[2000];
     struct timeval start, end;
 
     read_file(filename, text, sizeof(text)); // Читаем текст из файла
