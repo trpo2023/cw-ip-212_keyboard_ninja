@@ -5,6 +5,7 @@
 #include <string.h>
 #include <sys/time.h>
 
+void genName(char* filename, int choice);
 void trim(char* str);
 void set_text_color(int color);
 void print_text(const char* text);

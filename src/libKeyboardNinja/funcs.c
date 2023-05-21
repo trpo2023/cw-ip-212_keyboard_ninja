@@ -16,9 +16,33 @@
 #include <unistd.h>
 #define FG_DEF 0
 #define BG_RED 41
-#define FG_GRAY 30
+#define FG_GRAY 2
 #define BG_GREEN 42
 #endif
+
+// Функция для генерации случайного имени файла по сложности
+void genName(char* filename, int choice)
+{
+    int randomNumber;
+    srand(time(NULL));
+    switch (choice) {
+    case 1:
+        randomNumber = rand() % 5 + 1;
+        sprintf(filename, "%d.txt", randomNumber);
+        break;
+    case 2:
+        randomNumber = rand() % 5 + 6;
+        sprintf(filename, "%d.txt", randomNumber);
+        break;
+    case 3:
+        randomNumber = rand() % 5 + 11;
+        sprintf(filename, "%d.txt", randomNumber);
+  break;
+    default:
+        printf("Incorrect input!\n");
+        break;
+    }
+}
 
 // Функция для удаления лишних символов
 void trim(char* str)
@@ -56,8 +80,7 @@ void set_text_color(int color)
 // Функция для вывода оригинального текста
 void print_text(const char* text)
 {
-    printf("\nType the following text: %s\n", text);
-
+    printf("\nType the following text:\n");
     set_text_color(FG_GRAY);
     printf("%s", text);
     set_text_color(FG_DEF);
