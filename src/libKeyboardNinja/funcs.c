@@ -1,11 +1,11 @@
 #include "funcs.h"
 #include <ctype.h>
 #include <locale.h>
-#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <time.h>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -38,7 +38,7 @@ void genName(char* filename, int choice)
     case 3:
         randomNumber = rand() % 5 + 11;
         sprintf(filename, "%d.txt", randomNumber);
-  break;
+        break;
     default:
         printf("Incorrect input!\n");
         break;
