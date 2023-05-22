@@ -1,7 +1,19 @@
 #include "ctest.h"
 #include <libKeyboardNinja/funcs.h>
 
-CTEST(TextsComparison, error_count)
+CTEST(error_counter, correct_input)
+{
+    char text[100]
+            = "Beware of love. Beware of love. It is more dangerous than "
+              "brandy, bronchitis, or pleurisy!";
+    char input[100]
+            = "Beware of love. Beware of love. It is more dangerous than "
+              "brandy, bronchitis, or pleurisy!";
+    int expected = 0;
+    ASSERT_EQUAL(expected, print_comparison(text, input));
+}
+
+CTEST(error_counter, wrong_input)
 {
     char text[100]
             = "Beware of love. Beware of love. It is more dangerous than "
@@ -11,9 +23,15 @@ CTEST(TextsComparison, error_count)
               "brandy, bronchitis, or pleurisy";
     int expected = 4;
     ASSERT_EQUAL(expected, print_comparison(text, input));
-    char input2[100]
+}
+
+CTEST(error_counter, empty_input)
+{
+    char text[100]
             = "Beware of love. Beware of love. It is more dangerous than "
               "brandy, bronchitis, or pleurisy!";
-    expected = 0;
-    ASSERT_EQUAL(expected, print_comparison(text, input2));
+    char input[100] = "";
+    int expected = 90;
+    ASSERT_EQUAL(expected, print_comparison(text, input));
 }
+
