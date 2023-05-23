@@ -34,4 +34,3 @@ CTEST(error_counter, empty_input)
     int expected = 90;
     ASSERT_EQUAL(expected, print_comparison(text, input));
 }
-
